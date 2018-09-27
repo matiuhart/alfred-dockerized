@@ -15,29 +15,31 @@ services:
      volumes:
        - /home/dockers/alfred/webapps:/opt/tomcat/webapps
      privileged: true
-     
+     depends_on:
+       - alfred_db
+
 # Defino base de datos
-#   alfred_db:
-#     image: hypriot/rpi-mysql
-#     container_name: alfred_db
-#     volumes:
-#       - "./db:/var/lib/mysql"
+   alfred_db:
+     image: hypriot/rpi-mysql
+     container_name: alfred_db
+     volumes:
+       - "./db:/var/lib/mysql"
      #restart: always
-#     environment:
-#       MYSQL_ROOT_PASSWORD: root
-#       MYSQL_DATABASE: alfred
-#       MYSQL_USER: alfred
-#       MYSQL_PASSWORD: 114529
+     environment:
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: alfred
+       MYSQL_USER: alfred
+       MYSQL_PASSWORD: 114529
 
 # Defino contenedor de phpmyadmin
-#   phpmyadmin-desa:
-#     image: wednus/rpi-phpmyadmin
-#     container_name: alfred_phpmyadmin
-#     environment:
-#       - PMA_HOST=alfred_db
+   phpmyadmin-desa:
+     image: wednus/rpi-phpmyadmin
+     container_name: alfred_phpmyadmin
+     environment:
+       - PMA_HOST=alfred_db
      #restart: always
-#     ports:
-#       - 8086:80
-#     volumes:
-#       - /sessions
-#     #mem_limit: 128m
+     ports:
+       - 82:80
+     volumes:
+       - /sessions
+     #mem_limit: 128m
