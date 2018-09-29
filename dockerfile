@@ -41,6 +41,9 @@ RUN rm -rf /opt/tomcat/webapps/ROOT
 
 # Add admin/admin user
 ADD ./files/tomcat-users.xml /opt/tomcat/conf/
+ADD ./files/brewcontroller /usr/lib/brewcontroller
+
+RUN ln -s /usr/lib/brewcontroller/brewcontroller.py /usr/bin/brewcontroller
 
 ENV CATALINA_HOME /opt/tomcat
 ENV PATH $PATH:$CATALINA_HOME/bin

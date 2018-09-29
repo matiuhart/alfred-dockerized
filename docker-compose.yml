@@ -6,14 +6,14 @@ version: '2'
 services:
 # Defino contenedor de BD
    alfred_tomcat:
-     image: alfred-rpi-tomcat
+     image: matiuh/alfred-tomcat
      container_name: alfred_tomcat
      #restart: always
      ports:
        - 80:8080
        - 81:8009
      volumes:
-       - /home/dockers/alfred/webapps:/opt/tomcat/webapps
+       - ./webapps:/opt/tomcat/webapps
      privileged: true
      depends_on:
        - alfred_db
